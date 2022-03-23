@@ -16,12 +16,15 @@ int main() {
     vector<string> guessedLetters;
     vector<string> guessedWord;
 
-
-    start:
     // Welcome the user and ask for a word which can be guessed. Generates dashes for UI.
     cout << "Welcome to hangman!" << endl;
     cout << "Have a friend enter a word to guess: ";
     getline(cin, wordToGuess);
+    
+    // New code to try and turn inputted word into uppercase
+    
+    transform(wordToGuess.begin(), wordToGuess.end(), wordToGuess.begin(), ::toupper);
+    
     game::createDashes(dashes, guessedWord, wordToGuess);
 
     // While loop will continue to run until the user has ran out of guesses or the user guesses the
@@ -39,6 +42,8 @@ int main() {
 
         cout << "Enter ONE letter: ";
         getline(cin, inputLetter);
+        
+        transform(inputLetter.begin(), inputLetter.end(), inputLetter.begin(), ::toupper);
 
         while (inputLetter.length() > 1) {
             cout << "Please make sure you only enter ONE letter!" << endl << "Enter ONE letter: ";
